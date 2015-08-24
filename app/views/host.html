@@ -1,0 +1,24 @@
+<div class="row" ng-if="game.data.state == 'waitingForPlayers'">
+	<div class="jumbotron">
+		<h1>Join our game!</h1>
+		<h2>Go to http://someaddress.com on your smartphone</h2>
+		<h2>Our PIN code is {{game.$id}}</h2>
+		<p><button class="btn btn-success" ng-click="startGame()">Let's begin!</button></p>
+	</div>
+	<div class="col-md-12">
+		<div class="well">
+			<h3>Who's here:</h3>
+			<ul>
+				<li ng-repeat="player in game.data.users">
+					{{player.screen_name}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-if="game.data.state == 'preQuestion'">
+	<div class="jumbotron">
+		<h1>Next question will be displayed in {{countdown}} seconds.. </h1>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h1>Let's play trivia.</h1>
+  <p class="lead">
+    In real time!
+  </p>
+  <p><a ng-if="!creatingGame" class="btn btn-lg btn-success" ng-click="newGame()">Start new Game</a></p>
+  <p><a ng-if="creatingGame" ng-disabled="true" class="btn btn-lg btn-success" ng-click="newGame()">Creating game..</a></p>
+  <p><a class="btn btn-lg btn-success" ng-href="#/player">Join Existing Game</a></p>
+</div>
+

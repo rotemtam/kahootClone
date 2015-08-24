@@ -1,0 +1,32 @@
+<div class="row" ng-if="game.data.state=='joinGame'">
+	<div class="col-md-6 col-md-offset-3">
+		<form>
+		  <div class="form-group">
+		    <label for="PIN">Game PIN #</label>
+		    <input ng-model="$parent.PIN" type="text" class="form-control" id="PIN" placeholder="Enter 6 digit number availible on main screen">
+		  </div>
+		  <div class="form-group">
+		    <label for="screenName">Your name</label>
+		    <input ng-model="$parent.screenName" type="text" class="form-control" id="screenName" placeholder="Choose a screen name">
+		  </div>
+		  
+		  <button type="submit" ng-if="!joining" class="btn btn-primary btn-lg" ng-click="join()">Join</button>
+		  <button class="btn btn-primary btn-lg" ng-disabled="true" ng-if="joining">
+		  	Joining game..
+		  </button>
+		</form>
+	</div>
+</div>
+
+<div class="row" ng-if="game.data.state=='waitingForPlayers'">
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Hi {{game.data.users[playerId].screen_name}}</h1>
+		<h3>We're waiting for everyone else to join.</h3>
+	</div>
+</div>
+
+<div class="row" ng-if="game.data.state=='preQuestion'">
+	<div class="col-md-6 col-md-offset-3">
+		<h3>Heads up! The question will be displayed on the main screen real soon!</h3>
+	</div>
+</div>
