@@ -58,4 +58,9 @@ angular.module('kahootCloneApp')
 		return self._connect()
     };
 
+    self.saveSelfAttr = function(attr, val) {
+        _so.data.users[self._id][attr] = val;
+        return _so.$save();
+    }
+
   });

@@ -21,12 +21,12 @@ angular.module('kahootCloneApp')
     	},
     	{
     		'q' : 'What is the definition of Pi?',
-    		'wrong_answers' : ['Type of pastry', '3.14', 'Shorthand for pizza']
+    		'wrong_answers' : ['Type of pastry', '3.14', 'Shorthand for pizza'],
     		'answer' : 'Perimeter divided by diameter'
     	},
     	{
     		'q' : 'Who is the creator of TV show Breaking Bad?',
-    		'wrong_answers' : 'Walter White', 'Saul Goodman', 'Vince Vega',
+    		'wrong_answers' : ['Walter White', 'Saul Goodman', 'Vince Vega'],
     		'answer' : 'Vince Galligan'
     	}
     ];
@@ -34,6 +34,20 @@ angular.module('kahootCloneApp')
     self.getQuestions = function(){
     	return _.shuffle(self.questions)
     };
+
+    self.getPossibleAnswers = function(question) {
+    	return _.shuffle([question.answer].concat(question.wrong_answers))
+    };
+
+    self.checkAnswer = function(questionText, answer) {
+        console.log('Checking:');
+
+    	var question = _.find(self.questions, function(q) {
+    		return q.q == questionText;
+    	});
+        console.log(questionText, answer, question.answer == answer);
+    	return question.answer == answer;
+    }
 
 
   });

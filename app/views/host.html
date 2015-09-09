@@ -1,7 +1,7 @@
 <div class="row" ng-if="game.data.state == 'waitingForPlayers'">
 	<div class="jumbotron">
 		<h1>Join our game!</h1>
-		<h2>Go to http://someaddress.com on your smartphone</h2>
+		<h2>Go to https://kahootclone.firebaseapp.com on your smartphone</h2>
 		<h2>Our PIN code is {{game.$id}}</h2>
 		<p><button class="btn btn-success" ng-click="startGame()">Let's begin!</button></p>
 	</div>
@@ -20,5 +20,58 @@
 <div class="row" ng-if="game.data.state == 'preQuestion'">
 	<div class="jumbotron">
 		<h1>Next question will be displayed in {{countdown}} seconds.. </h1>
+	</div>
+</div>
+
+<div class="row" ng-if="game.data.state == 'question'">
+	<div class="col-md-12">
+		<h1>
+			{{currentQuestion.q}}
+		</h1>
+		<h3>{{countdown}} seconds left..</h3>
+	</div>
+	<div class="col-md-6" ng-repeat="answer in answers">
+		<div class="well">
+		<h1>{{$index+1}}</h1>
+		<h2>{{answer}}</h2>
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-if="game.data.state == 'postQuestion'">
+	<div class="jumbotron">
+		<h3>And the correct answer:</h3>
+		<h1>{{currentQuestion.answer}} </h1>
+		Correct answers by:
+		<ul>
+			<li ng-repeat="user in correct">{{user}}</li>
+		</ul>
+		<h3 ng-if="correct.length == 0">
+			No One :-(
+		</h3>
+		<div>
+			<button ng-if="game.data.currentQuestion != game.data.questions.length - 1"
+				class="btn btn-success" ng-click="nextQuestion()">Next Question</button>
+			<button ng-if="game.data.currentQuestion == game.data.questions.length - 1"
+				class="btn btn-success" ng-click="endGame()">End Game</button>				
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-if="game.data.state == 'leaderboard'">
+	<div class="col-md-12">
+		<h1>Leaderboard</h1>
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th></th>
+				<th>User</th>
+				<th>Points</th>
+			</tr>
+			<tr ng-repeat="user in leaderboard | orderBy:'currentPoints'">
+				<td>{{$index+1}}</td>
+				<td>{{user.screen_name}}</td>
+				<th>{{user.current_points}}</th>
+			</tr>
+		</table>
 	</div>
 </div>
